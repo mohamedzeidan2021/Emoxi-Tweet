@@ -25,9 +25,9 @@ export default function Home() {
         </div>
         <div>
           <div>
-            {data?.map((post: Post) => (
-              <div key={post.id}>{post.content}</div>
-            ))}
+            {data?.map((post) => (
+                <div key={post.id}>{post.content}</div>
+              ))}
           </div>
         </div>
       </main>
