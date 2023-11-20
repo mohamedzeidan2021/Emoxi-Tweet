@@ -1,6 +1,9 @@
 import { z } from "zod";
+import { PrismaClient } from '@prisma/client';
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
+
+const prisma = new PrismaClient();
 
 let post = {
   id: 1,
@@ -26,7 +29,12 @@ export const postRouter = createTRPCRouter({
       return post;
     }),
 
-  getLatest: publicProcedure.query(() => {
-    return post;
-  }),
+    getLatest: publicProcedure.query(() => {
+      return post;
+    }),
+
+    getAll: publicProcedure.query(async () => {
+      const allPosts = await prisma.post.findMany();
+      return allPosts;
+    }),
 });
