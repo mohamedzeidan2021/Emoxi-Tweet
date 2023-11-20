@@ -1,7 +1,7 @@
 import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import Head from "next/head";
 import Link from "next/link";
-import { Post } from "@prisma/client"; // Import the Post type
+import { Post } from "@prisma/client"; // Import the Post type asd
 
 import { api } from "~/utils/api";
 
