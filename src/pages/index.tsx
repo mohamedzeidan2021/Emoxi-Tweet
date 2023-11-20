@@ -9,7 +9,7 @@ export default function Home() {
 
   const user = useUser();
 
-  const {data} = api.post.getLatest.useQuery();
+  const {data} = api.post.getAll.useQuery();
 
   return (
     <>
@@ -25,7 +25,9 @@ export default function Home() {
         </div>
         <div>
           <div>
-            {data?.name}
+            {data?.map((post: Post) => (
+              <div key={post.id}>{post.content}</div>
+            ))}
           </div>
         </div>
       </main>

@@ -18,9 +18,6 @@ export const postRouter = createTRPCRouter({
         greeting: `Hello ${input.text}`,
       };
     }),
-  getAll: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.post.findMany();
-  }),
 
   create: publicProcedure
     .input(z.object({ name: z.string().min(1) }))
@@ -36,8 +33,8 @@ export const postRouter = createTRPCRouter({
       return post;
     }),
 
-    // getAll: publicProcedure.query(async () => {
-    //   const allPosts = await prisma.post.findMany();
-    //   return allPosts;
-    // }),
+    getAll: publicProcedure.query(async () => {
+      const allPosts = await prisma.post.findMany();
+      return allPosts;
+    }),
 });
