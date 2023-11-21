@@ -9,6 +9,7 @@ import { api } from "~/utils/api";
 import type { RouterOutputs } from "~/utils/api";
 import { LoadingPage, LoadingSpinner } from "~/components/loading";
 import { useState } from "react";
+import toast, {Toaster} from "react-hot-toast";
 
 dayjs.extend(relativeTime);
 
@@ -21,6 +22,14 @@ const CreatePostWizard = () => {
     onSuccess: () => {
       setInput("");
       void ctx.post.getAll.invalidate();
+    },
+    onError: (e) => {  
+      const errorMessage = e.data?.zodError?.fieldErrors.content;
+      if (errorMessage?.[0]) {
+        toast.error(errorMessage[0]);
+      } else {
+        toast.error("Failed to post! Please try again later.");
+      }
     }
   });
 
@@ -46,8 +55,16 @@ const CreatePostWizard = () => {
     onChange={(e) => setInput(e.target.value)}
     disabled={isPosting}
   />
-  <button onClick={() => mutate({ content: input })}>Post</button>
+  {input !== "" && !isPosting && (
+    <button onClick={() => mutate({ content: input })} disabled={isPosting}>
+      Post
+    </button>
+  )}
     
+  {isPosting && 
+    <div className="flex justify-center items-center">
+      <LoadingSpinner />
+    </div>}
   </div>
 };
 
