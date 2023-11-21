@@ -1,14 +1,13 @@
 import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import Head from "next/head";
 import Link from "next/link";
-import { Post } from "@prisma/client"; // Import the Post type asd
+import { EmojiPost } from "@prisma/client"; // Import the Post type asd
 
 import { api } from "~/utils/api";
 
 export default function Home() {
 
   const user = useUser();
-
   const {data} = api.post.getAll.useQuery();
 
   return (

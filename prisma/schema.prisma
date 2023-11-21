@@ -8,7 +8,7 @@ generator client {
     provider        = "prisma-client-js"
 }
 
-model Post {
+model EmojiPost {
     id        String   @id @default(cuid())
     createdAt DateTime @default(now())
 

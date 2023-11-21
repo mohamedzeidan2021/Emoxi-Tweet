@@ -34,7 +34,7 @@ export const postRouter = createTRPCRouter({
     }),
 
     getAll: publicProcedure.query(async () => {
-      const allPosts = await prisma.post.findMany();
+      const allPosts = await prisma.emojiPost.findMany();
       return allPosts;
     }),
 });
