@@ -1,6 +1,7 @@
 import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import Head from "next/head";
 import Link from "next/link";
+import { EmojiPost } from "@prisma/client"; // Import the Post type asd
 
 import { api } from "~/utils/api";
 
@@ -23,7 +24,7 @@ export default function Home() {
         </div>
         <div>
           <div>
-            {data?.map((post) => (
+            {data?.map((post: EmojiPost) => (
                 <div key={post.id}>{post.content}</div>
               ))}
           </div>
