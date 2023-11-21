@@ -1,4 +1,3 @@
-import type { User } from "@clerk/nextjs/api";
 import { z } from "zod";
 import { PrismaClient } from '@prisma/client';
 
@@ -7,13 +6,7 @@ import { clerkClient } from "@clerk/nextjs";
 import { TRPCClientError } from "@trpc/client";
 import { TRPCError } from "@trpc/server";
 
-const filterUserForClient = (user: User) => {
-  return {
-          id: user.id,
-          username: user.username,
-          profilePicture: user.profileImageUrl
-        };
-};
+import { filterUserForClient } from "~/server/helpers/filterUserForClient";
 
 import { Ratelimit } from "@upstash/ratelimit"; // for deno: see above
 import { Redis } from "@upstash/redis"; // see below for cloudflare and fastly adapters
